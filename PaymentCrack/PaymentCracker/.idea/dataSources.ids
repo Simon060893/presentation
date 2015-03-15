@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Oracle - xe@localhost" uuid="f54a850d-2ae3-4d96-bb8f-a465984432e4">
+    <database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production" jdbc-version="11.2" driver-name="Oracle JDBC driver" driver-version="11.2.0.3.0">
+      <extra-name-characters>$#</extra-name-characters>
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
+    <schema name="PAYMENTCRACKER" catalog=""/>
+    <table name="ATTRIBUTES" schema="PAYMENTCRACKER" catalog="" type="TABLE">
+      <column name="ATTRID" sqlType="NUMBER" precision="10" scale="0" nullable="false" jdbcType="3"/>
+      <column name="NAME" sqlType="VARCHAR2" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TYPE" sqlType="NUMBER" precision="10" scale="0" nullable="true" jdbcType="3"/>
+      <column name="OBJTYPEID" sqlType="NUMBER" precision="10" scale="0" nullable="false" jdbcType="3"/>
+      <primary-key name="SYS_C0010307" columns="ATTRID"/>
+      <foreign-key name="FK_K2QFU95WFPE30RHG02ULGF0K8" columns="OBJTYPEID" ref-table="OBJTYPE" ref-schema="PAYMENTCRACKER" ref-catalog="" ref-columns="OBJTYPEID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <exported-key name="FK_CE7MF93CGJFDH2VJ9ULO25RA7" table="OBJREFERENCE" schema="PAYMENTCRACKER" catalog="" columns="ATTRID"/>
+      <exported-key name="FK_GIKFI8FHPOJAFGM319VTPK8QD" table="PARAMETERS" schema="PAYMENTCRACKER" catalog="" columns="ATTRID"/>
+      <index name="CODE_ID_ATTR" unique="true" columns="NAME"/>
+      <index name="OBJTYPEID_ATTR" unique="true" columns="OBJTYPEID"/>
+    </table>
+    <table name="OBJECTS" schema="PAYMENTCRACKER" catalog="" type="TABLE">
+      <column name="OBJECTID" sqlType="NUMBER" precision="19" scale="0" nullable="false" jdbcType="3"/>
+      <column name="NAME" sqlType="VARCHAR2" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OBJTYPEID" sqlType="NUMBER" precision="10" scale="0" nullable="false" jdbcType="3"/>
+      <column name="PARENTID" sqlType="NUMBER" precision="19" scale="0" nullable="true" jdbcType="3"/>
+      <primary-key name="SYS_C0010317" columns="OBJECTID"/>
+      <foreign-key name="FK_OI6937OTLC7PWQ76II90PDTU8" columns="PARENTID" ref-table="OBJECTS" ref-schema="PAYMENTCRACKER" ref-catalog="" ref-columns="OBJECTID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FK_DLUETV4QU3VLEBCMTXGQUR04T" columns="OBJTYPEID" ref-table="OBJTYPE" ref-schema="PAYMENTCRACKER" ref-catalog="" ref-columns="OBJTYPEID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <exported-key name="FK_OI6937OTLC7PWQ76II90PDTU8" table="OBJECTS" schema="PAYMENTCRACKER" catalog="" columns="PARENTID"/>
+      <exported-key name="FK_58FL16EYBEVEWOJ4MB0XNUS5J" table="OBJREFERENCE" schema="PAYMENTCRACKER" catalog="" columns="REFERENCE"/>
+      <exported-key name="FK_6BB3LM50ACHMBOOSPDN29885S" table="OBJREFERENCE" schema="PAYMENTCRACKER" catalog="" columns="OBJECTID"/>
+      <exported-key name="FK_LAXQILV90HN1IHN92PTWMC163" table="PARAMETERS" schema="PAYMENTCRACKER" catalog="" columns="OBJECTID"/>
+      <index name="NAME_OBJ" unique="true" columns="NAME"/>
+      <index name="OBJECT_TYPE_OBJ" unique="true" columns="OBJTYPEID"/>
+    </table>
+    <table name="OBJREFERENCE" schema="PAYMENTCRACKER" catalog="" type="TABLE">
+      <column name="REFERENCE" sqlType="NUMBER" precision="19" scale="0" nullable="false" jdbcType="3"/>
+      <column name="OBJECTID" sqlType="NUMBER" precision="19" scale="0" nullable="false" jdbcType="3"/>
+      <column name="ATTRID" sqlType="NUMBER" precision="10" scale="0" nullable="false" jdbcType="3"/>
+      <primary-key name="SYS_C0010311" columns="ATTRID,OBJECTID,REFERENCE"/>
+      <foreign-key name="FK_CE7MF93CGJFDH2VJ9ULO25RA7" columns="ATTRID" ref-table="ATTRIBUTES" ref-schema="PAYMENTCRACKER" ref-catalog="" ref-columns="ATTRID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FK_58FL16EYBEVEWOJ4MB0XNUS5J" columns="REFERENCE" ref-table="OBJECTS" ref-schema="PAYMENTCRACKER" ref-catalog="" ref-columns="OBJECTID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FK_6BB3LM50ACHMBOOSPDN29885S" columns="OBJECTID" ref-table="OBJECTS" ref-schema="PAYMENTCRACKER" ref-catalog="" ref-columns="OBJECTID" update-rule="0" delete-rule="1" deferrability="2"/>
+    </table>
+    <table name="OBJTYPE" schema="PAYMENTCRACKER" catalog="" type="TABLE">
+      <column name="OBJTYPEID" sqlType="NUMBER" precision="10" scale="0" nullable="false" jdbcType="3"/>
+      <column name="NAME" sqlType="VARCHAR2" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PARENTID" sqlType="NUMBER" precision="10" scale="0" nullable="true" jdbcType="3"/>
+      <primary-key name="SYS_C0010314" columns="OBJTYPEID"/>
+      <foreign-key name="FK_SDMJP3M3N5D90217691BNNRHD" columns="PARENTID" ref-table="OBJTYPE" ref-schema="PAYMENTCRACKER" ref-catalog="" ref-columns="OBJTYPEID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <exported-key name="FK_K2QFU95WFPE30RHG02ULGF0K8" table="ATTRIBUTES" schema="PAYMENTCRACKER" catalog="" columns="OBJTYPEID"/>
+      <exported-key name="FK_DLUETV4QU3VLEBCMTXGQUR04T" table="OBJECTS" schema="PAYMENTCRACKER" catalog="" columns="OBJTYPEID"/>
+      <exported-key name="FK_SDMJP3M3N5D90217691BNNRHD" table="OBJTYPE" schema="PAYMENTCRACKER" catalog="" columns="PARENTID"/>
+      <index name="UK_CH8PR9XRQTBM6LUVD99NNLDDR" unique="true" columns="NAME"/>
+    </table>
+    <table name="PARAMETERS" schema="PAYMENTCRACKER" catalog="" type="TABLE">
+      <column name="DATEVALUE" sqlType="TIMESTAMP(6)" precision="11" scale="6" nullable="true" jdbcType="93"/>
+      <column name="VALUE" sqlType="VARCHAR2" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OBJECTID" sqlType="NUMBER" precision="19" scale="0" nullable="false" jdbcType="3"/>
+      <column name="ATTRID" sqlType="NUMBER" precision="10" scale="0" nullable="false" jdbcType="3"/>
+      <primary-key name="SYS_C0010320" columns="ATTRID,OBJECTID"/>
+      <foreign-key name="FK_GIKFI8FHPOJAFGM319VTPK8QD" columns="ATTRID" ref-table="ATTRIBUTES" ref-schema="PAYMENTCRACKER" ref-catalog="" ref-columns="ATTRID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="FK_LAXQILV90HN1IHN92PTWMC163" columns="OBJECTID" ref-table="OBJECTS" ref-schema="PAYMENTCRACKER" ref-catalog="" ref-columns="OBJECTID" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="OBJECT_ID_PRM" unique="true" columns="OBJECTID"/>
+      <index name="VALUE_PRM" unique="true" columns="VALUE"/>
+    </table>
+    <table name="SOMEIDN" schema="PAYMENTCRACKER" catalog="" type="SEQUENCE"/>
+    <table name="schema_version" schema="PAYMENTCRACKER" catalog="" type="TABLE">
+      <column name="version_rank" sqlType="NUMBER" precision="38" scale="0" nullable="false" jdbcType="3"/>
+      <column name="installed_rank" sqlType="NUMBER" precision="38" scale="0" nullable="false" jdbcType="3"/>
+      <column name="version" sqlType="VARCHAR2" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR2" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR2" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="script" sqlType="VARCHAR2" precision="1000" scale="0" nullable="false" jdbcType="12"/>
+      <column name="checksum" sqlType="NUMBER" precision="38" scale="0" nullable="true" jdbcType="3"/>
+      <column name="installed_by" sqlType="VARCHAR2" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="installed_on" sqlType="TIMESTAMP(6)" precision="11" scale="6" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVAg"/>
+      <column name="execution_time" sqlType="NUMBER" precision="38" scale="0" nullable="false" jdbcType="3"/>
+      <column name="success" sqlType="NUMBER" precision="1" scale="0" nullable="false" jdbcType="3"/>
+      <primary-key name="schema_version_pk" columns="version"/>
+      <index name="schema_version_ir_idx" unique="true" columns="installed_rank"/>
+      <index name="schema_version_s_idx" unique="true" columns="success"/>
+      <index name="schema_version_vr_idx" unique="true" columns="version_rank"/>
+    </table>
+    <procedure name="CHECKISPURSENEW" schema="PAYMENTCRACKER" catalog="" type="2" remarks="U3RhbmRhbG9uZSBwcm9jZWR1cmUgb3IgZnVuY3Rpb24=">
+      <prototype>
+        <parameter name="CURRENCY_TYPE" sqlType="VARCHAR2" precision="32767" scale="0" nullable="true" jdbcType="12" type="1" index="1"/>
+        <parameter name="USER_ID" sqlType="NUMBER" precision="19" scale="0" nullable="true" jdbcType="3" type="1" index="2"/>
+        <parameter name="" sqlType="NUMBER" precision="19" scale="0" nullable="true" jdbcType="3" type="5" index="0"/>
+      </prototype>
+    </procedure>
+    <procedure name="CHECKISUSERUNIQUE" schema="PAYMENTCRACKER" catalog="" type="2" remarks="U3RhbmRhbG9uZSBwcm9jZWR1cmUgb3IgZnVuY3Rpb24=">
+      <prototype>
+        <parameter name="IN_LOGIN" sqlType="VARCHAR2" precision="32767" scale="0" nullable="true" jdbcType="12" type="1" index="1"/>
+        <parameter name="IN_PASSWORD" sqlType="VARCHAR2" precision="32767" scale="0" nullable="true" jdbcType="12" type="1" index="2"/>
+        <parameter name="" sqlType="NUMBER" precision="19" scale="0" nullable="true" jdbcType="3" type="5" index="0"/>
+      </prototype>
+    </procedure>
+    <procedure name="CREATEDATE" schema="PAYMENTCRACKER" catalog="" type="2" remarks="U3RhbmRhbG9uZSBwcm9jZWR1cmUgb3IgZnVuY3Rpb24=">
+      <prototype>
+        <parameter name="NUM" sqlType="NUMBER" precision="22" scale="0" nullable="true" jdbcType="3" type="1" index="1"/>
+        <parameter name="" sqlType="VARCHAR2" precision="32767" scale="0" nullable="true" jdbcType="12" type="5" index="0"/>
+      </prototype>
+    </procedure>
+    <procedure name="GETCURRENID" schema="PAYMENTCRACKER" catalog="" type="2" remarks="U3RhbmRhbG9uZSBwcm9jZWR1cmUgb3IgZnVuY3Rpb24=">
+      <prototype>
+        <parameter name="NUM" sqlType="NUMBER" precision="22" scale="0" nullable="true" jdbcType="3" type="1" index="1"/>
+        <parameter name="" sqlType="NUMBER" precision="22" scale="0" nullable="true" jdbcType="3" type="5" index="0"/>
+      </prototype>
+    </procedure>
+  </data-source>
+</component>
